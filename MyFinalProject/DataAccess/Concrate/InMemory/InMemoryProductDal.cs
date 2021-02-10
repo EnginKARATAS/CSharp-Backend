@@ -10,7 +10,7 @@ namespace DataAccess.Concrate.InMemory
     public class InMemoryProductDal : IProductDal
     {
         List<Product> _products;
-        public InMemoryProductDal(IProductDal productDal)
+        public InMemoryProductDal()
         {
             _products = new List<Product> {
                 new Product{ProductId = 1 , CategoryId=1,ProductName="Bardak",UnitPrice = 15, UnitInStock=15 } ,

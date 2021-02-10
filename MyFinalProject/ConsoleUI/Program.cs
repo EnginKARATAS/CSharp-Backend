@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.Concrate;
+using DataAccess.Concrate.InMemory;
+using System;
 
 namespace ConsoleUI
 {
@@ -6,7 +8,13 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ProductManager productManager = new ProductManager(new InMemoryProductDal());
+
+            foreach (var product in productManager.GetAll())
+            {
+                Console.WriteLine(product.ProductName);
+            }
+
         }
     }
 }

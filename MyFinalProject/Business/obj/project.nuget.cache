@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "HymX2uG0By/JxIjNWSdnZtyWw8XaG7lq+INiTok/BUlqHWZRVa+8/bIHikmZe8GgwMR7Mvac5pacGWPSPExOYg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Business\\Business.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sona\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\sona\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

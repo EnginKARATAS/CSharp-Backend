@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.Concrate
 {
-    public class Product:IE ntity
+    public class Product:IEntity
     {
         public int ProductId { get; set; }
         public int CategoryId { get; set; }

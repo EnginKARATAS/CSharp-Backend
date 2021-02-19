@@ -11,7 +11,10 @@ namespace DataAccess.Concrate.EntityFramework
     {
         public void Add(Product entitiy)
         {
+            using (NorthwindContext context = new NorthwindContext())//using garbage collectore gelince işlem yapıp bittikten sonra garıç garbıç beni sil hemen diyor. bunun nedeni Context nesnesi nin maliyetidir. yani biz bu maliyeti en aza indirgemek için contex nesnesini garbage den hemen silmek istedik
+            {
 
+            }
         }
 
         public void Delete(Product entitiy)

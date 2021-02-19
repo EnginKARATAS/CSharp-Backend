@@ -5,13 +5,8 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IProductDal                                                                                            
+    public interface IProductDal:IEntityRepository<Product>                                                                                           
     {
-        //interface metodları default publicdir ⬇
-        List<Product> GetAll(); //anasayfadaki ürünler gibi
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(Product product);
-        List<Product> GetAllByCategory(int categoryId); 
+       
     }
 }                                   

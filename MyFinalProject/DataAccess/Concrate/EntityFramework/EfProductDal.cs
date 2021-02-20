@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrate;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,54 +11,17 @@ using System.Text;
 
 namespace DataAccess.Concrate.EntityFramework
 {
-    public class EfProductDal : IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
     {
-        public void Add(Product entity)
-        {
-            //IDisposable pattern implementation of c#
-            using (NorthwindContext context = new NorthwindContext())//using garbage collectore gelince işlem yapıp bittikten sonra garıç garbıç beni sil hemen diyor. bunun nedeni Context nesnesi nin maliyetidir. yani biz bu maliyeti en aza indirgemek için contex nesnesini garbage den hemen silmek istedik
-            {
-                var addedEntity = context.Entry(entity); //veritabanındaki entity refereansini yakala
-                addedEntity.State = EntityState.Added;//state = ekleme 
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Product entity)
-        {
-            //IDisposable pattern implementation of c#
-            using (NorthwindContext context = new NorthwindContext())//using garbage collectore gelince işlem yapıp bittikten sonra garıç garbıç beni sil hemen diyor. bunun nedeni Context nesnesi nin maliyetidir. yani biz bu maliyeti en aza indirgemek için contex nesnesini garbage den hemen silmek istedik
-            {
-                var deletedEntity = context.Entry(entity); //veritabanındaki entity refereansini yakala
-                deletedEntity.State = EntityState.Deleted;//state = ekleme 
-                context.SaveChanges();
-            }
-        }
-
-        public Product Get(Expression<Func<Product, bool>> filter)
+        public List<ProductDetailDto> GetProductDetails()
         {
             using (NorthwindContext context = new NorthwindContext())
             {
-                return context.Set<Product>().SingleOrDefault(filter); // context.Set<Product>() = a list
-            }
-        }
-
-        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
-        {
-            using (NorthwindContext context = new NorthwindContext())
-            {
-                return filter == null ? context.Set<Product>().ToList() : context.Set<Product>().Where(filter).ToList();
-            }
-        }
-
-        public void Update(Product entity)
-        {
-            //IDisposable pattern implementation of c#
-            using (NorthwindContext context = new NorthwindContext())//using garbage collectore gelince işlem yapıp bittikten sonra garıç garbıç beni sil hemen diyor. bunun nedeni Context nesnesi nin maliyetidir. yani biz bu maliyeti en aza indirgemek için contex nesnesini garbage den hemen silmek istedik
-            {
-                var updatedEntity = context.Entry(entity); //veritabanındaki entity refereansini yakala
-                updatedEntity.State = EntityState.Modified;//state = ekleme 
-                context.SaveChanges();
+                var result = from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryId equals c.CategoryId
+                             select new ProductDetailDto { CategoryName = c.CategoryName,ProductId = p.ProductId, ProductName=p.ProductName,UnitInStock=p.UnitsInStock};
+                return result.ToList();                             
             }
         }
     }

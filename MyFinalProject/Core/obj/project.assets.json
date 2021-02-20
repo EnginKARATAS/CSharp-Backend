@@ -25,16 +25,6 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
-      },
-      "Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Core.dll": {}
-        }
       }
     }
   },
@@ -182,16 +172,10 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
-    },
-    "Core/1.0.0": {
-      "type": "project",
-      "path": "../Core/Core.csproj",
-      "msbuildProject": "../Core/Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Core >= 1.0.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -201,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Entities\\Entities.csproj",
-      "projectName": "Entities",
-      "projectPath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Core\\Core.csproj",
+      "projectName": "Core",
+      "projectPath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\sona\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Entities\\obj\\",
+      "outputPath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sona\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -223,11 +207,7 @@
       "frameworks": {
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
-          "projectReferences": {
-            "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Core\\Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

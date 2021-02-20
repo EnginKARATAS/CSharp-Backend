@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wSqyXDsvi52+3SzoxkHc/EJB2JclfNb4u+/MvYGwGNPXMlIcUAAui3K3daOpXo5XAe1BWi0YMuNAjVIa6nbfCQ==",
+  "dgSpecHash": "jTtl+R2vrylUtz1oV5ekRC45XXuFbLScIpUBROeLGEZZr1HntfaGFbYK2T2egAbeKf2XW6EtCNHP0LQSW5rBxg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sona\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

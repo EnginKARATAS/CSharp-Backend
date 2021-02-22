@@ -21,6 +21,11 @@ namespace Business.Concrate
 
         public IResult Add(Product product)
         {
+            if (product.ProductName.Length <2)
+            {
+                return new ErrorResult("Ürün en az 2 harften oluşmalıdır");
+            }
+               
             _productDal.Add(product);
             return new SuccessResult("Ürün Eklendi");
         }

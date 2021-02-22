@@ -29,7 +29,7 @@ namespace Core.DataAccess.EntityFramework
             using (TContext context = new TContext())//using garbage collectore gelince işlem yapıp bittikten sonra garıç garbıç beni sil hemen diyor. bunun nedeni Context nesnesi nin maliyetidir. yani biz bu maliyeti en aza indirgemek için contex nesnesini garbage den hemen silmek istedik
             {
                 var deletedEntity = context.Entry(entity); //veritabanındaki entity refereansini yakala
-                deletedEntity.State = EntityState.Deleted;//state = ekleme 
+                deletedEntity.State = EntityState.Deleted;//state = durum  
                 context.SaveChanges();
             }
         }

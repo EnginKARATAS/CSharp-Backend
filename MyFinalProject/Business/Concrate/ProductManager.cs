@@ -22,7 +22,7 @@ namespace Business.Concrate
         public IResult Add(Product product)
         {
             _productDal.Add(product);
-            return new Result(true, "Ürün eklendi");
+            return new SuccessResult("Ürün Eklendi");
         }
 
         public List<Product> GetAll()

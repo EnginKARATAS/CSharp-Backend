@@ -15,12 +15,19 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
-    {   
-        [HttpGet]                                                           
+    {
+        //IoC --Inversion of Control
+        IProductService _productService; //buna bağımlıyız artık. Get()`in 2. satırında productmanageri newledik. bundan kaçınmak için zayıf bağımlılık olarak interface üzerinden gittik. fakat interface üzerinden gidip aynı sonucu yazdırmak istediğimizde Unable to resolve hatası aldık. neyi newleyeceğini bilemedi. bu sornunu çzözmek için WebAPI katmanının içerisinde Startup.cs içerisinde IoC yapısını .Net ile gelen temel IoC ayarlarını kullanarak öğreneceğiz.
+        public ProductsController(IProductService productService)
+        {
+            _productService = productService;
+        }
+        [HttpGet]
         public List<Product> Get()
         {
-            IProductService productService = new ProductManager(new EfProductDal());
-            var result = productService.GetAll();
+            //dependency chain.
+            //IProductService productService = new ProductManager(new EfProductDal());
+            var result = _productService.GetAll();
             return result.Data;
         }
     }

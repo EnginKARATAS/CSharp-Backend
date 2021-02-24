@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+YiCGGtk06ZTWyYLwUwyDKP+JePgOMtN0ANscyshtXXa5oxSuDEIt8c+rNV1UQjHX5wlAg0R/Ls4ZiAoJ+GQLQ==",
+  "dgSpecHash": "a9MQN7J/mgSmFGiF4hx6sWBbDKGDiaYNp95qMyWTw9QSnq0UmKnCmyk2sCEphPfKs/8r7RQSZizhNGgSPrEcmA==",
   "success": true,
   "projectFilePath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\Core\\Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\sona\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

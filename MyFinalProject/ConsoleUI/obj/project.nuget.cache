@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "iGEQd5bWhe6tTDQTM+AQ62ojBJDkOd2FCGB+9zpmoPjboo/LAlOsDDMXkE0tyvg4kK/XVE2G4UMF5hDgyv5CcA==",
+  "dgSpecHash": "Nph9szSDU6M1K0MH2Rj8Hp8ObMtNgsUc4dbTxG9nZHVlv4SiCrbKhW9/rqQ4TcyvG4KpdJ2k+ENp38k51ITJrw==",
   "success": true,
   "projectFilePath": "C:\\Users\\sona\\Documents\\GitHub\\MyFinalProject\\MyFinalProject\\ConsoleUI\\ConsoleUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sona\\.nuget\\packages\\autofac\\6.1.0\\autofac.6.1.0.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\autofac.extras.dynamicproxy\\6.0.0\\autofac.extras.dynamicproxy.6.0.0.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
+    "C:\\Users\\sona\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\sona\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

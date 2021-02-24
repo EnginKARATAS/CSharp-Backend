@@ -1,8 +1,8 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
-using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrate;
@@ -17,7 +17,7 @@ namespace Business.Concrate
     {
         IProductDal _productDal;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, ILogger logger)
         {
             _productDal = productDal;
         }
@@ -25,8 +25,7 @@ namespace Business.Concrate
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-          
-
+            
             _productDal.Add(product);
 
             return new SuccessResult(Messages.ProgramAdded);

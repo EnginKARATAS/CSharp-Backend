@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
+using Business.CCS;
 using Business.Concrate;
 using Castle.DynamicProxy;
 using DataAccess.Abstract;
@@ -19,9 +20,9 @@ namespace Business.DependencyResolvers.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             //single instance, holds just one referance. There, we are working with referance typees. so single instance gives one referance to all clients
+            //"reflections"********* sistem çalışma zamanında  aşağıdakiler newlenir. reflections unutma
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
-
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

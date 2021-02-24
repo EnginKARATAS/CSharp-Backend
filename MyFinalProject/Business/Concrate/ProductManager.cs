@@ -32,7 +32,9 @@ namespace Business.Concrate
 
             var result = BusinessRules.Run(
                      CheckIfNameExists(product.ProductName),
-                     CheckIfProductCountOfCategoryCorrect(product.CategoryId));
+                     CheckIfProductCountOfCategoryCorrect(product.CategoryId),
+                     CheckIfCategoryLimitExceded()
+                     );
             if (result != null)
             {
                 return result;
@@ -114,9 +116,14 @@ namespace Business.Concrate
             return new SuccessResult();
 
         }
-        private IResult CheckIfMoreThanCategoryNumber()
+        public IResult CheckIfCategoryLimitExceded()
         {
-            var result = _productDal.GetAll(p=>p.cat);
+            var result = _categoryService.GetAll();
+            if (result.Data.Count > 15)
+            {
+                return new ErrorResult(Messages.CategoryLimitExeded);
+            }
+            return new SuccessResult();
         }
     }
 }

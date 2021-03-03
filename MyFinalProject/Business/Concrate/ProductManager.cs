@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Cachings;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -21,15 +22,17 @@ namespace Business.Concrate
         IProductDal _productDal;
         ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal, ICategoryService categoryService)
+        ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
             _categoryService = categoryService;
         }
 
-        //claim
-        //[SecuredOperation("product.add,admin")]
+
+        [SecuredOperation("product.add,admin:")]
         [ValidationAspect(typeof(ProductValidator))]
+        //örneğin yeni ürün eklenince cacheyi boz
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
 
@@ -46,7 +49,7 @@ namespace Business.Concrate
             return new SuccessResult(Messages.ProgramAdded);
         }
 
-        [CacheAspects]          
+        [CacheAspect]          
         public IDataResult<List<Product>> GetAll()
         {
             if (DateTime.Now.Hour == 19)
@@ -62,6 +65,7 @@ namespace Business.Concrate
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
         }
 
+        [CacheAspect]
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
@@ -84,6 +88,8 @@ namespace Business.Concrate
 
 
         [ValidationAspect(typeof(ProductValidator))]
+        //[CacheRemoveAspect("Get")]//bellekteki içerisinde get olan tüm keyleri iptal et
+        [CacheRemoveAspect("IProductService.Get")]//bellekteki içerisinde Iproductservice içindeki get olan tüm keyleri iptal et
         public IResult Update(Product product)
         {
             var result = _productDal.GetAll(p => p.CategoryId == product.CategoryId).Count;

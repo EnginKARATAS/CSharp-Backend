@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text.RegularExpressions;
+using System.Linq;
+
 namespace Core.CrossCuttingConcerns.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
@@ -54,7 +57,7 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 
             foreach (var key in keysToRemove)
             {
-                _cache.Remove(key);
+                _memoryCache.Remove(key);
             }
         }
     }

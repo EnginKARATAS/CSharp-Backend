@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Core.CrossCuttingConcerns.Caching
 {
-    interface ICacheManager
+    public interface ICacheManager
     {
+        T Get<T>(string key);
+        object Get(string key);
+        void Add(string key, object value, int duration);
+        bool IsAdd(string key); //cache yoksa oluştur varsa cache kullan . isadd cache ye eklenecek mi
+        void RemoveByPattern(string pattern);
     }
 }

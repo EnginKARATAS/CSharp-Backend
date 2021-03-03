@@ -44,12 +44,9 @@ namespace Business.Concrate
             }
             _productDal.Add(product);
             return new SuccessResult(Messages.ProgramAdded);
-
-
-
-
         }
 
+        [CacheAspects]          
         public IDataResult<List<Product>> GetAll()
         {
             if (DateTime.Now.Hour == 19)

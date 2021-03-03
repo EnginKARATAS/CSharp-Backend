@@ -6,3 +6,4 @@ C:\Users\sona\Documents\GitHub\MyFinalProject\MyFinalProject\Core\obj\Debug\nets
 C:\Users\sona\Documents\GitHub\MyFinalProject\MyFinalProject\Core\obj\Debug\netstandard2.0\Core.csproj.CoreCompileInputs.cache
 C:\Users\sona\Documents\GitHub\MyFinalProject\MyFinalProject\Core\obj\Debug\netstandard2.0\Core.dll
 C:\Users\sona\Documents\GitHub\MyFinalProject\MyFinalProject\Core\obj\Debug\netstandard2.0\Core.pdb
+C:\Users\sona\Documents\GitHub\MyFinalProject\MyFinalProject\Core\obj\Debug\netstandard2.0\Core.csprojAssemblyReference.cache

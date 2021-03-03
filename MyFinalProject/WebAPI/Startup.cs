@@ -1,12 +1,16 @@
 ﻿using Business.Abstract;
 using Business.Concrate;
+using Core.DependencyResolvers;
+using Core.Excentions;
 using Core.Security.Encrypton;
 using Core.Security.JWT;
+using Core.Utilities.IoC;
 using DataAccess.Abstract;
 using DataAccess.Concrate.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +44,7 @@ namespace WebAPI
             //services.AddSingleton<IProductDal, EfProductDal>(); 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -54,6 +59,9 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+            services.AddDependencyResolvers(new ICoreModule[] {
+                new CoreModule()
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

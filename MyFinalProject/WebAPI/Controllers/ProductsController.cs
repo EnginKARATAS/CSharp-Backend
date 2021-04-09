@@ -1,13 +1,13 @@
 ﻿using Business.Abstract;
-using Business.Concrate;
-using Core.Utilities.Results;
-using DataAccess.Concrate.EntityFramework;
-using Entities.Concrate;
+using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -16,35 +16,69 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        //IoC --Inversion of Control
-        IProductService _productService; //buna bağımlıyız artık. Get()`in 2. satırında productmanageri newledik. bundan kaçınmak için zayıf bağımlılık olarak interface üzerinden gittik. fakat interface üzerinden gidip aynı sonucu yazdırmak istediğimizde Unable to resolve hatası aldık. neyi newleyeceğini bilemedi. bu sornunu çzözmek için WebAPI katmanının içerisinde Startup.cs içerisinde IoC yapısını .Net ile gelen temel IoC ayarlarını kullanarak öğreneceğiz.
+        //Loosely coupled
+        //naming convention
+        //IoC Container -- Inversion of Control
+        IProductService _productService;
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
+
         [HttpGet("getall")]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
-            //dependency chain.
-            //IProductService productService = new ProductManager(new EfProductDal());
-            var result = _productService.GetAll();
+            //Swagger
+            //Dependency chain --
+
+            Thread.Sleep(1000);
+
+            var result =  _productService.GetAll();
             if (result.Success)
             {
-                return Ok(result);//http result code 200 OK işlem oksa datayı ver
-                //return Created();//201
+                return Ok(result);
             }
             return BadRequest(result);
+
         }
+
         [HttpGet("getbyid")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             var result = _productService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
             }
+
             return BadRequest(result);
         }
+
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getproductdetails")]
+        public IActionResult GetProductDetails(int categoryId)
+        {
+            var result = _productService.GetProductDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Product product)
         {
@@ -55,5 +89,10 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+
     }
 }
+
+
+//22.05 DERSTEYİZ

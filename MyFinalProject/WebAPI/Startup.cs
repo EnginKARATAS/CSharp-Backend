@@ -1,12 +1,12 @@
-﻿using Business.Abstract;
-using Business.Concrate;
+using Business.Abstract;
+using Business.Concrete;
 using Core.DependencyResolvers;
-using Core.Excentions;
-using Core.Security.Encrypton;
-using Core.Security.JWT;
+using Core.Extensions;
 using Core.Utilities.IoC;
+using Core.Utilities.Security.Encryption;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
-using DataAccess.Concrate.EntityFramework;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,16 +35,20 @@ namespace WebAPI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        //built-in(kendi içinde var olan) api control. Javada bin klasörünün içinden yapılıyor
         public void ConfigureServices(IServiceCollection services)
         {
-            //Autofac, Ninject, CastleWindsor, StructureMap, Lightnject, DryInject -->IoC Container
+            //AOP
+            //Autofac, Ninject,CastleWindsor, StructureMap, LightInject, DryInject -->IoC Container
+            //AOP
+            //Postsharp
             services.AddControllers();
-            //services.AddSingleton<IProductService, ProductManager>();//singelton, tüm bellekte bir tane product manager oluşturur. gelen tüm clientlere aynı newlenmiş classı verir.. singelton içerisinde bir tane newleyip verdiğinden, data tutmada singelton kullanılmamalı. çünkü bir tane newliyoruz. örneğin bir tane e ticaret sepeti olur tutarsan. 
-            //services.AddSingleton<IProductDal, EfProductDal>(); 
+            //services.AddSingleton<IProductService,ProductManager>();
+            //services.AddSingleton<IProductDal, EfProductDal>();
+
+            services.AddCors();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -59,9 +63,11 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+
             services.AddDependencyResolvers(new ICoreModule[] {
-                new CoreModule()
+               new CoreModule()
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,10 +77,15 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.ConfigureCustomExceptionMiddleware();
+
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -82,6 +93,7 @@ namespace WebAPI
             {
                 endpoints.MapControllers();
             });
+            //23.10 dersteyiz
         }
     }
 }

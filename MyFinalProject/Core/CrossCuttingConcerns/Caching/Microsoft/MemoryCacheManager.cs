@@ -11,7 +11,7 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {
-        //adapter pattern
+        //Adapter Pattern
         IMemoryCache _memoryCache;
 
         public MemoryCacheManager()
@@ -39,11 +39,15 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
             return _memoryCache.TryGetValue(key, out _);
         }
 
-        //ona verdiğimiz bir patterne göre silme işlemi yapar 2:0:0
+        public void Remove(string key)
+        {
+            _memoryCache.Remove(key);
+        }
+
         public void RemoveByPattern(string pattern)
         {
             var cacheEntriesCollectionDefinition = typeof(MemoryCache).GetProperty("EntriesCollection", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var cacheEntriesCollection = cacheEntriesCollectionDefinition.GetValue(_cache) as dynamic;
+            var cacheEntriesCollection = cacheEntriesCollectionDefinition.GetValue(_memoryCache) as dynamic;
             List<ICacheEntry> cacheCollectionValues = new List<ICacheEntry>();
 
             foreach (var cacheItem in cacheEntriesCollection)
@@ -59,6 +63,8 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
             {
                 _memoryCache.Remove(key);
             }
+            //23:15 DERSTEYİZ
+            //PUSH BASTIM :)
         }
     }
 }

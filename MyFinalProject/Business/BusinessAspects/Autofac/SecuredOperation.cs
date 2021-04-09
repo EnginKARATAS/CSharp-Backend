@@ -1,11 +1,13 @@
-﻿using Business.Constants;
-using Castle.DynamicProxy;
-using Core.Excentions;
-using Core.Utilities.Interceptors;
+﻿using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
+using System.Text;
+using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
+using Core.Extensions;
+using Business.Constants;
 
 namespace Business.BusinessAspects.Autofac
 {
@@ -18,7 +20,6 @@ namespace Business.BusinessAspects.Autofac
         public SecuredOperation(string roles)
         {
             _roles = roles.Split(',');
-            //sericetool injection altyapısını aynen okumamıza yarar örneğin win form da mobilde vb
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
 
         }

@@ -7,8 +7,6 @@ namespace Core.Utilities.IoC
 {
     public interface ICoreModule
     {
-        //genel bağlılıkyalı yükle
         void Load(IServiceCollection serviceCollection);
-
     }
 }

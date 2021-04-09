@@ -9,4 +9,5 @@ namespace Business.CCS
             Console.WriteLine("Veritabanına loglandı");
         }
     }
+
 }

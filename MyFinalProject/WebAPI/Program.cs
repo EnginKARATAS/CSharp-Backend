@@ -19,8 +19,6 @@ namespace WebAPI
             CreateHostBuilder(args).Build().Run();
         }
 
-        //sv config
-        //autofac.extenciosns.dependencyinjection include AutofacServiceProviderFactory 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
